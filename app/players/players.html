@@ -3,7 +3,7 @@
 
 <p>{{text}}</p>
 
-<input type="text" ng-model="searchedPlayer"> <button ng-click="searchPlayer(searchedPlayer)">Szukaj!</button> <br>
+<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer"> <button ng-click="searchPlayer(searchedPlayer)">Szukaj!</button> <br>
 
 <p ng-show="!found">{{notFoundMessage}}</p>
 <br>
@@ -22,7 +22,7 @@
 <span ng-show="playerForm.playerSurname.$error.minlength">Za krótki wpis!</span>
 
 <br> <br>
-<label>Wiek:</label> <input type="number" ng-model="age" ng-change="checkAge()" ng-required="true"><br>
+<label>Wiek:</label> <input type="number" ng-model="age" ng-change="checkAge(age)" ng-required="true"><br>
 <span ng-show="showAgeWarning">Zbyt mała wartość!</span>   
 <br>
 <label>Wartość:</label> <input type="number" ng-model="value" ng-min="0" ng-required="true"><br><br>  
@@ -31,17 +31,5 @@
 
 
 </form>
-
-
-
-<!-- <span ng-show="found"> Nazwisko: {{foundPlayer.surname}} <br> Imię: <input type="text" ng-model="newName" placeholder={{foundPlayer.name}}> <br> Wiek: <input type="text" ng-model="newAge" placeholder={{foundPlayer.age}}> <br> Wartość: <input type="text" ng-model="newValue" placeholder={{foundPlayer.value}}><br>
-
-<button ng-click="updateValue(foundPlayer.surname, newValue, newName, newAge)">Zmień</button> <br>
-<span ng-show = "foundPlayer.wrongEdit">Wpisano nieprawidłową wartość lub wszystkie pola puste!</span>
-
-</span> -->
-
-
-
 
 

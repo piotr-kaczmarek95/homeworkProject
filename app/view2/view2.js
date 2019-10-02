@@ -9,12 +9,10 @@ angular.module('homeworkProject.view2', ['ngRoute'])
     });
   }])
 
-  .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('View2Ctrl', ['$scope', '$http', 'playerDataFactory', function ($scope, $http) {
 
     $scope.text = "Losowy fakt:";
-        
-    //funkcje wykonywane w zależności od sukcesu pobrania danych
-
+    
     const successCallback = function (response) {
 
       $scope.data = response.data;
@@ -30,6 +28,5 @@ angular.module('homeworkProject.view2', ['ngRoute'])
       method: 'GET',
       url: 'http://numbersapi.com/random/trivia'
     }).then(successCallback, errorCallback); //nazwy funkcji - bez argumentow
-
 
   }])
