@@ -9,6 +9,66 @@ angular.module('homeworkProject.players', ['ngRoute'])
         });
     }])
 
+    .factory('playerDataServices', ['localStorageService', function (localStorageService) {
+
+        return {
+
+            showAllEntries: function () {
+
+                console.log(localStorageService.keys());
+
+                let keys = localStorageService.keys();
+                keys.forEach(item => {
+
+                    console.log("Klucz: " + item + ", wartość: imię " + localStorageService.get(item).name + ", wiek " + localStorageService.get(item).age + ", wartość " + localStorageService.get(item).value);
+
+                })
+            },
+
+            importDataFromStorage: function (playerData) {
+
+                //kasowanie wpisów przekazanej tablicy
+                playerData.length = 0;
+
+                //aktualizacja danych na podstawie wpisów w localStorage
+
+                let keys = localStorageService.keys();
+
+                keys.forEach(item => {
+
+                    playerData.push({
+
+                        name: localStorageService.get(item).name,
+                        surname: item,
+                        age: localStorageService.get(item).age,
+                        value: localStorageService.get(item).value
+                    })
+                })
+            },
+
+            clearAll: function (playerData) {
+
+                localStorageService.clearAll();
+                playerData.length = 0;
+                console.log("Wyczyszczono local storage");
+            },
+
+            removeFromStorage: function (surname, playerData) {
+
+                localStorageService.remove(surname);
+                console.log("Usunięto: " + surname);
+
+                for (let i = 0; i < playerData.length; i++) {
+
+                    if (playerData[i].surname == surname) {
+
+                        playerData.splice(i, 1);
+                    }
+                }
+            }
+        }
+    }])
+
     .factory('checkAgeService', function () {
 
         return {
@@ -29,71 +89,13 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                 return tooYoung;
             }
-        }
 
+        }
     })
-
-    .factory('showAllEntriesService', ['localStorageService', function (localStorageService) {
-
-        return {
-
-            showAllEntries: function () {
-
-                console.log(localStorageService.keys());
-
-                let keys = localStorageService.keys();
-                keys.forEach(item => {
-
-                    console.log("Klucz: " + item + ", wartość: imię " + localStorageService.get(item).name + ", wiek " + localStorageService.get(item).age + ", wartość " + localStorageService.get(item).value);
-
-                })
-            }
-        }
-    }])
-
-    .factory('importDataFromStorageService', ['localStorageService', function (localStorageService) {
-
-        return {
-    
-            importDataFromStorage: function (playerData) {
-    
-                //kasowanie wpisów przekazanej tablicy
-                playerData.length = 0;
-    
-                //aktualizacja danych na podstawie wpisów w localStorage
-    
-                let keys = localStorageService.keys();
-    
-                keys.forEach(item => {
-    
-                    playerData.push({
-    
-                        name: localStorageService.get(item).name,
-                        surname: item,
-                        age: localStorageService.get(item).age,
-                        value: localStorageService.get(item).value
-                    })
-                })
-            }
-        }
-    }])
-
-    .factory('clearAllService', ['localStorageService', function (localStorageService){
-
-        return {
-    
-            clearAll: function(playerData) {
-    
-                localStorageService.clearAll();
-                playerData.length = 0;
-                console.log("Wyczyszczono local storage");
-            }
-        }
-    }])
 
     //tu trzeba też wrzucić localStorageService
 
-    .controller('playersController', ['$scope', 'localStorageService', 'checkAgeService', 'showAllEntriesService', 'importDataFromStorageService', 'clearAllService', function ($scope, localStorageService, checkAgeService, showAllEntriesService, importDataFromStorageService, clearAllService) {
+    .controller('playersController', ['$scope', 'localStorageService', 'checkAgeService', 'playerDataServices', function ($scope, localStorageService, checkAgeService, playerDataServices) {
 
         $scope.showPicture = false;
 
@@ -128,35 +130,22 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         $scope.removeFromStorage = function (surname) {
 
-            //usuwam wpis z local storage
-
-            localStorageService.remove(surname);
-            console.log("Usunięto: " + surname);
-
-            //usuwam z wyswietlanej tablicy
-
-            for (let i = 0; i < $scope.playerData.length; i++) {
-
-                if ($scope.playerData[i].surname == surname) {
-
-                    $scope.playerData.splice(i, 1);
-                }
-            }
+            playerDataServices.removeFromStorage(surname, $scope.playerData);
         }
 
         $scope.showAllEntries = function () {
 
-            showAllEntriesService.showAllEntries();
-        }       
+            playerDataServices.showAllEntries();
+        }
 
-        $scope.importFromStorage = function () {          
+        $scope.importFromStorage = function () {
 
-            importDataFromStorageService.importDataFromStorage($scope.playerData);
+            playerDataServices.importDataFromStorage($scope.playerData);
         }
 
         $scope.clearAll = function () {
 
-            clearAllService.clearAll($scope.playerData);
+            playerDataServices.clearAll($scope.playerData);
 
         }
 
@@ -225,7 +214,6 @@ angular.module('homeworkProject.players', ['ngRoute'])
                         $scope.surname = $scope.playerData[i].surname;
                         $scope.age = $scope.playerData[i].age;
                         $scope.value = $scope.playerData[i].value;
-                        // $scope.foundPlayer = $scope.playerData[i];
                         break;
                     }
                 }
@@ -240,5 +228,5 @@ angular.module('homeworkProject.players', ['ngRoute'])
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
-        
+
     }]);

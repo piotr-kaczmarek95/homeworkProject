@@ -9,7 +9,7 @@ angular.module('homeworkProject.view2', ['ngRoute'])
     });
   }])
 
-  .controller('View2Ctrl', ['$scope', '$http', 'playerDataFactory', function ($scope, $http) {
+  .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.text = "Losowy fakt:";
     
