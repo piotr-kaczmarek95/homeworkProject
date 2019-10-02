@@ -3,10 +3,10 @@ angular.module('homeworkProject.players', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.
-            when('/players', {
-                templateUrl: 'players/players.html',
-                controller: 'playersController'
-            });
+        when('/players', {
+            templateUrl: 'players/players.html',
+            controller: 'playersController'
+        });
     }])
 
     //tu trzeba też wrzucić localStorageService
@@ -39,12 +39,16 @@ angular.module('homeworkProject.players', ['ngRoute'])
         }
 
 
-        $scope.text = "Add player to database";
+        $scope.text = "Dodaj lub edytuj zawodnika. Wielkość liter w wyszukiwarce nie ma znaczenia.";
         $scope.playerData = [];
 
         $scope.itemToStorage = function (name, surname, age, value) {
 
-            localStorageService.set(surname, { name: name, age: age, value: value });
+            localStorageService.set(surname, {
+                name: name,
+                age: age,
+                value: value
+            });
 
             $scope.importFromStorage(); //aktualizacja wyswietlenia 
 
@@ -167,50 +171,6 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         }
 
-        $scope.updateValue = function (surname, newValue, newName, newAge) {
-
-            // if ( (newName != undefined && newName.length <2) || ( newAge != undefined && newAge < 15) ||(newValue != undefined && newValue < 0) || (newName == undefined && newValue == undefined && newAge == undefined)){
-
-            //     console.log("Błędne dane!");
-
-            // }      
-
-            for (let i = 0; i < $scope.playerData.length; i++) {
-
-                if ($scope.playerData[i].surname == surname) {
-
-                    if (newValue == undefined && newName == undefined && newAge == undefined) {
-
-                        $scope.playerData[i].wrongEdit = true;
-                        break;
-                    }
-
-                    // przepisz starą wartość, gdy nie podano żadnej nowej
-                    if (newValue == undefined) newValue = $scope.playerData[i].value;
-                    if (newName == undefined) newName = $scope.playerData[i].name;
-                    if (newAge == undefined) newAge = $scope.playerData[i].age;
-
-                    //  zabezpieczenia analogiczne jak przy dodawaniu zawodnika                    
-
-                    if ((newName != undefined && newName.length < 2) || (newAge < 15) || (newValue < 0)) {
-
-                        $scope.playerData[i].wrongEdit = true;
-                        break;
-                    }
-
-                    $scope.playerData[i].isEdited = false;
-                    $scope.playerData[i].wrongEdit = false;
-                    localStorageService.set(surname, { name: newName, age: newAge, value: newValue });
-
-                    $scope.importFromStorage(); //aktualizacja widoku
-
-                    console.log("Po zmianie:" + localStorageService.get(surname).value);
-
-                    break;
-                }
-            }
-        }        
-
         $scope.searchPlayer = function (name) {
 
             if (name != undefined) {
@@ -227,7 +187,11 @@ angular.module('homeworkProject.players', ['ngRoute'])
                         console.log("Znalezione!");
 
                         $scope.found = true;
-                        $scope.foundPlayer = $scope.playerData[i];
+                        $scope.name = $scope.playerData[i].name;
+                        $scope.surname = $scope.playerData[i].surname;
+                        $scope.age = $scope.playerData[i].age;
+                        $scope.value = $scope.playerData[i].value;
+                        // $scope.foundPlayer = $scope.playerData[i];
                         break;
                     }
                 }
