@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="list/list.css">
+<h1>Lista zawodników</h1>
+
+<p>Szukaj</p>
+<input type="text" ng-model="searchedText"><br>
+
+
+
+<ul style="margin-left: -20px;">
+    <li ng-repeat="player in playerData | filter: searchedText">{{player.name+" "+player.surname+ " " + player.age+" "+player.value}}   <span ng-click="removeFromStorage(player.surname)" style="font-weight: bold">Usuń</span> <span ng-click="showEdit(player)"> Edytuj </span> <span><br> 
+        
+        <input type="text" ng-model="newName"  placeholder = "Nowe imię..." ng-show="player.isEdited">
+        <input type="number" ng-model="newAge"  placeholder = "Nowy wiek..." ng-show="player.isEdited">
+        <input type="number" ng-model="newValue"  placeholder = "Nowa wartość..." ng-show="player.isEdited"> 
+        <span ng-show = "player.wrongEdit && player.isEdited">Nieprawidlowa wartosc lub kazde pole puste!</span>
+        
+        <button ng-click="updateValue(player.surname, newValue, newName, newAge)" ng-show="player.isEdited" >Zmień</button>
+    <button ng-click="showEdit(player)" ng-show="player.isEdited">Anuluj</button> </span>   </li>
+</ul>
+<br>
+
+<button ng-click="showAllEntries()">Pokaż wpisy w konsoli</button>
+<button ng-click="clearAll()">Wyczyść localStorage</button> 
+<button ng-click="printChart()">Rysuj wykres</button> <br> <br>
+<div ng-show="showPicture" style="background-color: white; width: 400px; "><img src="" id="demo" style="width: 100%"></div>
+
+
+
+

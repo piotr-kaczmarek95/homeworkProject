@@ -1,0 +1,43 @@
+<!-- nie podawaj folderu app w ścieżce -->
+<link rel="stylesheet" href="players/players.css">
+
+<p>{{text}}</p>
+
+<form name="playerForm" ng-submit="itemToStorage(name, surname, age, value)">   
+
+<label>Imię:</label> <input type="text" ng-model="name" ng-required="true" ng-minlength="2" name="playerName">
+
+<span ng-show="playerForm.playerName.$dirty && playerForm.playerName.$error.required">Wypełnij pole</span>
+<span ng-show="playerForm.playerName.$error.minlength">Za krótki tekst!</span>
+
+<br> <br>
+
+<label>Nazwisko:</label> <input type="text" ng-model="surname" ng-required="true" ng-minlength="2" name="playerSurname">
+
+<span ng-show="playerForm.playerSurname.$dirty && playerForm.playerSurname.$error.required">Wypełnij pole</span>
+<span ng-show="playerForm.playerSurname.$error.minlength">Za krótki wpis!</span>
+
+<br> <br>
+<label>Wiek:</label> <input type="number" ng-model="age" ng-change="checkAge()" ng-required="true"><br>
+<span ng-show="showAgeWarning">Zbyt mała wartość!</span>   
+<br>
+<label>Wartość:</label> <input type="number" ng-model="value" ng-min="0" ng-required="true"><br><br>  
+
+<input type="submit" value="Wyślij" ng-disabled="playerForm.$invalid || showAgeWarning">
+
+</form>
+
+<p>Wpisz nazwisko zawodnika do edycji (wielkość liter nie ma znaczenia)</p>
+<input type="text" ng-model="searchedPlayer"> <button ng-click="searchPlayer(searchedPlayer)">Szukaj!</button> <br><br>
+
+<span ng-show="found"> Nazwisko: {{foundPlayer.surname}} <br> Imię: <input type="text" ng-model="newName" placeholder={{foundPlayer.name}}> <br> Wiek: <input type="text" ng-model="newAge" placeholder={{foundPlayer.age}}> <br> Wartość: <input type="text" ng-model="newValue" placeholder={{foundPlayer.value}}><br>
+
+<button ng-click="updateValue(foundPlayer.surname, newValue, newName, newAge)">Zmień</button> <br>
+<span ng-show = "foundPlayer.wrongEdit">Wpisano nieprawidłową wartość lub wszystkie pola puste!</span>
+
+</span>
+<p ng-show="!found">{{notFoundMessage}}</p>
+
+
+
+
