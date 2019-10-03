@@ -9,7 +9,8 @@ angular.module('homeworkProject', [
   'homeworkProject.view2',
   'homeworkProject.players',
   'homeworkProject.list',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'ngMaterial'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
