@@ -95,9 +95,21 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
     //tu trzeba też wrzucić localStorageService
 
-    .controller('playersController', ['$scope', 'localStorageService', 'checkAgeService', 'playerDataServices', function ($scope, localStorageService, checkAgeService, playerDataServices) {
+    .controller('playersController', ['$scope', '$location', 'localStorageService', 'checkAgeService', 'playerDataServices', function ($scope, $location, localStorageService, checkAgeService, playerDataServices) {
+
+        //pamiętaj, że view1 i view2 maja inny kontroler, dlatego nic sie nie pojawia
+
+        $scope.location = $location;
+        
+        // console.log($scope.location);
+        // console.log($scope.location.search());
 
         $scope.showPicture = false;
+
+        if ($scope.location.search() != ""){
+
+            $scope.searchedPlayer = $scope.location.search().searched;
+        }
 
         $scope.checkAge = function (age) {
 
@@ -194,13 +206,24 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         }
 
-        $scope.searchPlayer = function (name) {
+        $scope.zmienAdresPrzySzukaniu = function (name){
 
-            if (name != undefined) {
+            $location.search('searched', name);
+            let nazwa = name;
+            console.log("Przejscie do wywolania");
+            $scope.searchPlayer(nazwa);
+
+        }
+
+        $scope.searchPlayer = function (name) {           
+
+            if (name != undefined) {                      
+               
+                $location.search('searched', name);
 
                 $scope.found = false;
 
-                console.log("Jestem w funckji");
+                console.log("Jestem w funkcji szukającej");
 
                 for (let i = 0; i < $scope.playerData.length; i++) {
 
@@ -224,7 +247,17 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                     $scope.notFoundMessage = "Nie znalazłem!";
                 }
+
+                // $location.search('searched', name);
+                console.log("Po search");
+                console.log($scope.found);
+                // console.log($location.search()); //teraz jest getterem 
             }
+        }
+
+        $scope.removeHint = function () {
+
+            $location.search('searched', null); //kasowanie podaniem nulla
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
