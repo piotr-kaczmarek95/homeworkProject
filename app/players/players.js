@@ -5,7 +5,8 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $routeProvider.
         when('/players', {
             templateUrl: 'players/players.html',
-            controller: 'playersController'
+            controller: 'playersController',
+            reloadOnSearch: false
         });
     }])
 
