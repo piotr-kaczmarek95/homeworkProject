@@ -259,6 +259,7 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $scope.removeHint = function () {
 
             $location.search('searched', null); //kasowanie podaniem nulla
+            $scope.searchedPlayer = "";
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
