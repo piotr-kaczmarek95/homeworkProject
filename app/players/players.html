@@ -3,11 +3,10 @@
 
 <p>{{text}}</p>
 
-<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer"> <button ng-click="zmienAdresPrzySzukaniu(searchedPlayer)">Szukaj!</button> <button ng-click="removeHint()">Kasuj podpowiedź</button><br>
+<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer"> <button ng-click="searchPlayer(searchedPlayer)">Szukaj!</button> <button ng-click="removeHint()">Kasuj podpowiedź</button><br>
 
 <p ng-show="!found">{{notFoundMessage}}</p>
 <p ng-show="found">Znalazłem w bazie</p>
-<p>{{found}}</p>
 <br>
 <form name="playerForm" ng-submit="itemToStorage(name, surname, age, value)">   
 

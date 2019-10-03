@@ -205,16 +205,7 @@ angular.module('homeworkProject.players', ['ngRoute'])
             let res = encodeURI(uri);
             document.getElementById("demo").src = "https://quickchart.io/chart?c=" + res;
 
-        }
-
-        $scope.zmienAdresPrzySzukaniu = function (name){
-
-            $location.search('searched', name);
-            let nazwa = name;
-            console.log("Przejscie do wywolania");
-            $scope.searchPlayer(nazwa);
-
-        }
+        }        
 
         $scope.searchPlayer = function (name) {           
 
