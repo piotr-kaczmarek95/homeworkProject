@@ -1,21 +1,108 @@
-<link rel="stylesheet" href="list/list.css">
-<h1>Lista zawodników</h1>
+<!-- <link rel="stylesheet" href="list/list.css"> -->
+<style>
+    input {
 
-<p>Szukaj</p>
-<input type="text" ng-model="searchedText"><br>
+        width: 50%;
+        margin: 0 auto;
+    }
 
+    input.searchPlayer{
 
+        margin-top:20px;
+    }
 
-<ul style="margin-left: -20px;">
-    <li ng-repeat="player in playerData | filter: searchedText">{{player.name+" "+player.surname+ " " + player.age+" "+player.value}}   <span ng-click="removeFromStorage(player.surname)" style="font-weight: bold">Usuń</span></li>
-</ul>
-<br>
+    label {
 
-<button ng-click="showAllEntries()">Pokaż wpisy w konsoli</button>
-<button ng-click="clearAll()">Wyczyść localStorage</button> 
-<button ng-click="printChart()">Rysuj wykres</button> <br> <br>
-<div ng-show="showPicture" style="background-color: white; width: 400px; "><img src="" id="demo" style="width: 100%"></div>
+        margin: 0 auto;
+        font-weight: bold;
+    }
 
+    h1 {
+        margin: 10px auto;
+    }
 
+    md-icon {
 
+        margin-top: -7px;
+    }
 
+    md-list-item>span {
+
+        font-size: 14px;
+    }
+
+    .info {
+
+        font-size: 14px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .removeButton {
+
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    li:hover {
+
+        background-color: #bbbbbb;
+    }
+
+    div>.md-button {
+
+        width: 30%;
+        margin: 0 auto;
+    }
+</style>
+
+<md-toolbar>
+    <h1>Lista zawodników</h1>
+</md-toolbar>
+
+<div class="container" layout="column" flex>
+
+    <input class="searchPlayer" type="text" ng-model="searchedText" placeholder="Szukaj zawodnika..."><br>
+
+    <ul style="margin-left: -20px;">
+        <li ng-repeat="player in playerData | filter: searchedText" style="list-style-type: none">
+
+            <!-- {{player.name+" "+player.surname+ " " + player.age+" "+player.value}}   -->
+
+            <md-list-item style="position: relative">
+
+                <md-button>
+
+                    <md-icon md-svg-src="view1/account.svg"></md-icon>
+                    {{player.name+" "+ player.surname}}
+
+                </md-button>
+
+                <span class="info">
+
+                    <span style="margin-right: 0px;">{{"wiek: "+player.age+" wartość: "+player.value}}</span>
+
+                    <md-button class="removeButton" ng-click="removeFromStorage(player.surname)"> Usuń
+                    </md-button>
+
+                </span>
+        </li>
+
+        <md-divider></md-divider>
+
+        </md-list-item>
+
+    </ul>
+
+    <br>
+
+    <!-- <md-button class="md-raised" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
+
+    <md-button ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button>
+    <md-button ng-click="clearAll()">Wyczyść localStorage</md-button>
+    <md-button ng-click="printChart()">Rysuj wykres</md-button> <br> <br>
+    <div ng-show="showPicture" style="background-color: white; width: 400px; margin: 0 auto; "><img src="" id="demo"
+            style="width: 100%"></div>
+
+</div>

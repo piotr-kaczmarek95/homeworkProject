@@ -1,12 +1,75 @@
-<link rel="stylesheet" href="view1/view1.css">
+<!-- <link rel="stylesheet" href="view1/view1.css"> -->
 
-<div class=wrapper layout="column">
+<!-- <div class=wrapper layout="column"> -->
 
-    <md-toolbar>
-        <h1>Strona główna</h1>
-    </md-toolbar>
+<style>
+    h1 {
+        text-align: center;
+    }
 
-    <div class="container" layout="row" flex>
+    .md-content {
+
+        height: 100vh;
+    }
+
+    a {
+
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+
+<md-toolbar>
+    <h1>Strona główna</h1>
+</md-toolbar>
+
+<div class="container" layout="row" flex>
+
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-10dp">
+
+        <md-list>
+
+            <md-list-item>
+                <md-button><a href="#!/view1">Strona główna</a> </md-button>
+
+            </md-list-item>
+
+            <md-list-item>
+
+                <md-button><a href="#!/view2">Losowy fakt</a></md-button>
+
+            </md-list-item>
+
+            <md-list-item>
+
+                <md-button><a href="#!/players">Dodaj zawodnika</a></md-button>
+
+            </md-list-item>
+
+            <md-list-item>
+
+                <md-button><a href="#!/list">Lista zawodników</a></md-button>
+
+            </md-list-item>
+
+        </md-list>
+
+    </md-sidenav>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container" layout="row" flex>
 
         <md-content id="content" flex>Content</md-content>
 
@@ -14,6 +77,6 @@
            
         </style>
 
-    </div>
+    </div> -->
 
-</div>
+<!-- </div> -->

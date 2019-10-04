@@ -1,25 +1,63 @@
-<link rel="stylesheet" href="view2/view2.css">
+<!-- <link rel="stylesheet" href="view2/view2.css"> -->
+<style>
+  h1 {
 
-<p>{{text}}</p>
-<p>{{data}}</p>
+    margin: 0 auto;
+  }
+
+  p {
+    margin: 10px auto;
+  }
+
+  a {
+
+    text-decoration: none;
+    color: black;
+  }
+</style>
+
+<md-toolbar>
+  <h1>{{text}}</h1>
+</md-toolbar>
+
+<div class="container" layout="row" flex>
+
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-10dp">
+
+    <md-list>
+
+      <md-list-item>
+        <md-button><a href="#!/view1">Strona główna</a> </md-button>
+
+      </md-list-item>
+
+      <md-list-item>
+
+        <md-button><a href="#!/view2">Losowy fakt</a></md-button>
+
+      </md-list-item>
+
+      <md-list-item>
+
+        <md-button><a href="#!/players">Dodaj zawodnika</a></md-button>
+
+      </md-list-item>
+
+      <md-list-item>
+
+        <md-button><a href="#!/list">Lista zawodników</a></md-button>
+
+      </md-list-item>
+
+    </md-list>
+
+  </md-sidenav>
 
 
+  <md-content>
 
+    <p>{{data}}</p>
 
+  </md-content>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- <p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p> -->
-<!-- <p>{{user.login}} </p> -->
+</div>

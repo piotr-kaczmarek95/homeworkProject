@@ -9,21 +9,47 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Homework AngularJS Project</title>
+  <title>Mój projekt AngularJS</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- przestawienie na początek - wyższy priorytet -->
+  <link rel="stylesheet" href="lib/angular-material/angular-material.css"> 
+
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+  <style>
+
+    body{
+
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .menu li>a{
+
+      text-decoration: none;
+      color: #333333;
+      }
+
+      .menu li>a:hover{
+
+        color: #888888;
+      }
+  
+  </style>
+
+
 </head>
 
 <body>
   <ul class="menu">
-    <li><a href="#!/view1">Main Page</a></li>
-    <li><a href="#!/view2">API</a></li>
-    <li><a href="#!/players">Add player</a></li>
-    <li><a href="#!/list">Players list</a></li>
+    <li><a href="#!/view1">Strona główna</a></li>
+    <li><a href="#!/view2">Losowy fakt</a></li>
+    <li><a href="#!/players">Dodaj zawodnika</a></li>
+    <li><a href="#!/list">Lista zawodników</a></li>
   </ul>
 
   <!--[if lt IE 7]>
@@ -32,7 +58,8 @@
 
   <!-- tu będą wstawiane widoki -->
 
-  <div ng-view layout="column"></div>
+  <div ng-view layout="column" style="height: 100vh"></div>
+
 
   <!-- <div>AngularJS seed app: v<span app-version></span></div> -->
 
@@ -49,10 +76,10 @@
   <script src="list/list.js"></script>
   <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
 
-  <script src="lib/angular-aria/angular-aria.min.js"></script>
   <script src="lib/angular-animate/angular-animate.min.js"></script>
+  <script src="lib/angular-aria/angular-aria.min.js"></script>  
   <script src="lib/angular-material/angular-material.min.js"></script>
-  <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+ 
 
   <!-- <script src="./node_modules/angular-animate/angular-animate.min.js"></script>
   <script src="/zadanieDomowe/node_modules/angular-aria/angular-aria.min.js"></script>

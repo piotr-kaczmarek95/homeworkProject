@@ -1,36 +1,122 @@
 <!-- nie podawaj folderu app w ścieżce -->
-<link rel="stylesheet" href="players/players.css">
+<!-- <link rel="stylesheet" href="players/players.css"> -->
 
-<p>{{text}}</p>
+<style> 
 
-<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer"> <button ng-click="searchPlayer(searchedPlayer)">Szukaj!</button> <button ng-click="removeHint()">Kasuj podpowiedź</button><br>
+    input {
 
-<p ng-show="!found">{{notFoundMessage}}</p>
-<p ng-show="found">Znalazłem w bazie</p>
+        width: 35%;
+        margin: 0 auto;
+    }
+
+    form>input {
+
+        /* width: 70%; */
+        width: 100%;
+    }
+
+    h1 {
+        margin: 10px auto;
+    }
+
+    h1+p {
+
+        margin: 10px auto;
+    }
+
+    span.property {
+
+        display: inline-block;
+        width: 75px;
+    }
+
+    form {
+
+        /* margin: 0 auto; */
+        text-align: center;
+    }
+
+    .send {
+
+        cursor: pointer;
+    }
+
+
+    .playerForm .md-button {
+
+        /* width: 20%; */
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .md-button{
+
+        width: 30%;
+        margin: 0 auto;
+    }
+
+    div.playerForm {
+
+        margin: 0 auto;
+        width: 30%;
+    }
+</style>
+
+<md-toolbar>
+        
+<h1>Dodaj zawodnika</h1>
+</md-toolbar>
+
+
+<p style="text-align: center;">{{text}}</p>
+
+<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer">
+<md-button ng-click="searchPlayer(searchedPlayer)">Szukaj!</md-button>
+<md-button ng-click="removeHint()">Kasuj podpowiedź</md-button><br>
+
+
+<p ng-show="!found" style="text-align: center;">{{notFoundMessage}}</p>
+<!-- <p ng-show="found">Znalazłem w bazie</p> -->
 <br>
-<form name="playerForm" ng-submit="itemToStorage(name, surname, age, value)">   
 
-<label>Imię:</label> <input type="text" ng-model="name" ng-required="true" ng-minlength="2" name="playerName">
+<div class="playerForm">
 
-<span ng-show="playerForm.playerName.$dirty && playerForm.playerName.$error.required">Wypełnij pole</span>
-<span ng-show="playerForm.playerName.$error.minlength">Za krótki tekst!</span>
+    <form name="playerForm" ng-submit="itemToStorage(name, surname, age, value)">
 
-<br> <br>
+        <span class="property">Imię:</span><br><input type="text" ng-model="name" ng-required="true" ng-minlength="2"
+            name="playerName">
 
-<label>Nazwisko:</label> <input type="text" ng-model="surname" ng-required="true" ng-minlength="2" name="playerSurname">
+        <br>
 
-<span ng-show="playerForm.playerSurname.$dirty && playerForm.playerSurname.$error.required">Wypełnij pole</span>
-<span ng-show="playerForm.playerSurname.$error.minlength">Za krótki wpis!</span>
+        <span ng-show="playerForm.playerName.$dirty && playerForm.playerName.$error.required">Wypełnij
+            pole</span>
+        <span ng-show="playerForm.playerName.$error.minlength">Za krótki tekst!</span>
 
-<br> <br>
-<label>Wiek:</label> <input type="number" ng-model="age" ng-change="checkAge(age)" ng-required="true"><br>
-<span ng-show="showAgeWarning">Zbyt mała wartość!</span>   
-<br>
-<label>Wartość:</label> <input type="number" ng-model="value" ng-min="0" ng-required="true"><br><br>  
+        <br> <br>
 
-<input type="submit" value="Wyślij/Zmień" ng-disabled="playerForm.$invalid || showAgeWarning">
+        <span class="property">Nazwisko:</span> <br> <input type="text" ng-model="surname" ng-required="true"
+            ng-minlength="2" name="playerSurname">
 
+        <br>
 
-</form>
+        <span ng-show="playerForm.playerSurname.$dirty && playerForm.playerSurname.$error.required">Wypełnij
+            pole</span>
+        <span ng-show="playerForm.playerSurname.$error.minlength">Za krótki wpis!</span>
 
+        <br> <br>
+        <span class="property">Wiek:</span> <br> <input type="number" ng-model="age" ng-change="checkAge(age)"
+            ng-required="true">
+        <br>
 
+        <span ng-show="showAgeWarning">Zbyt mała wartość!</span>
+        <br> <br>
+
+        <span class="property">Wartość:</span> <br> <input type="number" ng-model="value" ng-min="0"
+            ng-required="true"><br><br>
+
+        <!-- <input class="send" type="submit" value="Wyślij/Zmień" ng-disabled="playerForm.$invalid || showAgeWarning"> -->
+
+        <md-button type="submit" ng-disabled="playerForm.$invalid || showAgeWarning">Wyślij/zmień</md-button>
+    </form>
+
+</div>

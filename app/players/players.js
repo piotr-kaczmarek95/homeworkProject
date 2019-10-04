@@ -209,7 +209,9 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         $scope.searchPlayer = function (name) {           
 
-            if (name != undefined) {                      
+            if (name != undefined && name!="") {     
+                
+                console.log(name)
                
                 $location.search('searched', name);
 

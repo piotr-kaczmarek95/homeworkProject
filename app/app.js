@@ -12,10 +12,14 @@ angular.module('homeworkProject', [
   'LocalStorageModule',
   'ngMaterial'
 ])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+.config(['$locationProvider', '$routeProvider', '$mdThemingProvider', function($locationProvider, $routeProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/players'});
+
+  $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('light-blue');
+
+
 
 }])
 
