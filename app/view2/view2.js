@@ -11,7 +11,7 @@ angular.module('homeworkProject.view2', ['ngRoute'])
 
   .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.text = "Losowy fakt:";
+    $scope.text = "Losowy fakt";
     
     const successCallback = function (response) {
 

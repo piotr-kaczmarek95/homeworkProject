@@ -7,15 +7,21 @@
         text-align: center;
     }
 
-    .md-content {
-
-        height: 100vh;
-    }
-
     a {
 
         text-decoration: none;
         color: black;
+    }
+
+    .red {
+
+        color: red;
+    }
+
+    .bottommenu {
+
+        width: 30%;
+        margin: 0 auto;
     }
 </style>
 
@@ -24,41 +30,59 @@
     <h1>Strona główna</h1>
 </md-toolbar>
 
-<div class="container" layout="row" flex>
+<div class="container" layout="column" flex>
 
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-10dp">
+    <!-- 
+        
+     -->
+    <!-- 
+    <p ng-class="{red: zmienna}">dddd</p>
 
-        <md-list>
+    <input ng-model="zmienna" type="checkbox"> -->
 
-            <md-list-item>
-                <md-button><a href="#!/view1">Strona główna</a> </md-button>
+    <h2 class="md-title" style="text-align: center;">Treść</h2>
 
-            </md-list-item>
+    <md-content flex layout-padding>
 
-            <md-list-item>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati qui, dolore voluptate similique
+            aspernatur culpa consectetur inventore quis esse, hic nulla. Labore unde, animi suscipit adipisci itaque
+            reprehenderit rem eligendi dolorum sunt, consectetur eaque! Porro ullam sed, error rem quos facilis eaque
+            minus doloribus voluptates in nihil autem numquam ea? Voluptatem nihil adipisci voluptate blanditiis
+            voluptatibus, vitae sed perferendis dignissimos alias, quisquam eius aliquam. Necessitatibus soluta
+            reiciendis ab numquam expedita fuga officia sapiente natus, eius sint at, quibusdam temporibus voluptatibus
+            aut. Tempora non, placeat nostrum hic excepturi eos deserunt, sapiente libero unde itaque ducimus illo dolor
+            commodi. Ducimus, numquam? Suscipit dolore eveniet quidem fuga porro provident, labore maxime nostrum
+            voluptatum veniam impedit natus dolores, pariatur nobis? Voluptate vitae voluptatem sapiente delectus dolore
+            debitis voluptatum asperiores id. Dolorem voluptates voluptas itaque, dignissimos doloribus deleniti
+            quisquam error praesentium saepe, minus provident vitae quam ratione asperiores corporis assumenda? Eveniet
+            dolorum quia molestiae neque tempora consectetur sapiente dolore quae iste eum laborum voluptates nobis,
+            consequatur architecto unde? Iure ipsam exercitationem tempora a natus sapiente, voluptatibus provident,
+            blanditiis dolorum animi cupiditate necessitatibus iste cum reiciendis fugit nihil doloremque commodi
+            dolorem eum distinctio ad incidunt vel velit! Quos rerum sed, dolore, aliquid cupiditate adipisci veniam,
+            suscipit deleniti possimus voluptate minus velit alias totam! Nobis laboriosam quae porro totam animi
+            ratione asperiores, reprehenderit corrupti doloribus iusto quasi voluptates aliquam alias fuga magnam nam
+            vel, distinctio tempora omnis architecto laborum cumque rem. Officiis voluptates tempore, est harum culpa
+            sapiente. Voluptatem, eligendi dignissimos, laboriosam, odio corrupti quis et nobis ratione quas molestiae
+            non. Praesentium eum dolorum tenetur vel nemo numquam quae sint dignissimos. A, necessitatibus repudiandae,
+            optio inventore id deserunt illum dolore non architecto nulla provident. Ipsam, maxime iusto. Expedita sequi
+            sint repudiandae autem. Tempora, at voluptates eaque magni rem omnis iste necessitatibus, rerum officia esse
+            amet alias quaerat.</p>
 
-                <md-button><a href="#!/view2">Losowy fakt</a></md-button>
 
-            </md-list-item>
+        <div flex layout="row" layout-align="center center">
 
-            <md-list-item>
+            <md-button class="md-primary md-raised" ng-click="showListBottomSheet()"
+                style="margin: 0 auto; text-align: center;">Pokaż dolną zakładkę </md-button>
 
-                <md-button><a href="#!/players">Dodaj zawodnika</a></md-button>
+        </div>
 
-            </md-list-item>
-
-            <md-list-item>
-
-                <md-button><a href="#!/list">Lista zawodników</a></md-button>
-
-            </md-list-item>
-
-        </md-list>
-
-    </md-sidenav>
+    </md-content>
 
 </div>
 
+<!-- <h4 ng-click="showText()"> Standard date-picker</h4>
+<md-datepicker ng-model="myDate" md-placeholder="Enter date" md-current-view="year" ng-change="showText()">
+</md-datepicker> -->
 
 
 

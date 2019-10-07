@@ -6,9 +6,9 @@
         margin: 0 auto;
     }
 
-    input.searchPlayer{
+    input.searchPlayer {
 
-        margin-top:20px;
+        margin-top: 20px;
     }
 
     label {
@@ -81,7 +81,8 @@
 
                 <span class="info">
 
-                    <span style="margin-right: 0px;">{{"wiek: "+player.age+" wartość: "+player.value}}</span>
+                    <span style="margin-right: 0px;">{{"wiek: "+player.age}} wartość: {{player.value | currency : "€"}}
+                    </span>
 
                     <md-button class="removeButton" ng-click="removeFromStorage(player.surname)"> Usuń
                     </md-button>
@@ -99,9 +100,14 @@
 
     <!-- <md-button class="md-raised" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
 
-    <md-button ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button>
-    <md-button ng-click="clearAll()">Wyczyść localStorage</md-button>
-    <md-button ng-click="printChart()">Rysuj wykres</md-button> <br> <br>
+    <div class="buttons" flex layout="row" layout-align="start start">
+
+        <md-button ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button>
+        <md-button ng-click="printChart()">Rysuj wykres</md-button>
+        <md-button ng-click="clearAll()">Wyczyść localStorage</md-button>
+
+    </div>
+
     <div ng-show="showPicture" style="background-color: white; width: 400px; margin: 0 auto; "><img src="" id="demo"
             style="width: 100%"></div>
 

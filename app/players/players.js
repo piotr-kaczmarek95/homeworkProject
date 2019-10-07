@@ -96,18 +96,47 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
     //tu trzeba też wrzucić localStorageService
 
-    .controller('playersController', ['$scope', '$location', 'localStorageService', 'checkAgeService', 'playerDataServices', function ($scope, $location, localStorageService, checkAgeService, playerDataServices) {
+    .controller('playersController', ['$scope', '$location', 'localStorageService', 'checkAgeService', 'playerDataServices', '$mdDialog', '$interval', function ($scope, $location, localStorageService, checkAgeService, playerDataServices, $mdDialog, $interval) {
 
         //pamiętaj, że view1 i view2 maja inny kontroler, dlatego nic sie nie pojawia
 
         $scope.location = $location;
-        
-        // console.log($scope.location);
+
+       $scope.searchButtonActive = true;
+
+        $scope.loadingValue = 0;
+
+        $scope.loadingBeforeSearch = function (searchedPlayer) {
+
+            if (searchedPlayer != ""  && searchedPlayer != undefined) {
+
+                console.log(searchedPlayer);
+
+                $scope.searchButtonActive = false; //wylaczenie, zeby nie dalo sie nalozyc dwoch interwalow na siebie kolejnym kliknieciem
+
+                $interval(function () {
+
+                    $scope.loadingValue += 10;
+                    console.log($scope.loadingValue);
+
+                    if ($scope.loadingValue == 100) {
+
+                        $scope.loadingValue = 0;
+                        $scope.searchPlayer(searchedPlayer);
+                        $scope.searchButtonActive = true;
+                    }
+
+                }, 100, 10);
+
+            }
+        }
+
+        console.log($scope.location);
         // console.log($scope.location.search());
 
         $scope.showPicture = false;
 
-        if ($scope.location.search() != ""){
+        if ($scope.location.search() != "") {
 
             $scope.searchedPlayer = $scope.location.search().searched;
         }
@@ -183,36 +212,43 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $scope.printChart = function () {
 
             let keys = localStorageService.keys();
-            let items = [];
-            let values = [];
 
-            $scope.showPicture = true;
+            // console.log(keys.length);
 
-            keys.forEach(item => {
+            if (keys.length > 0) {
 
-                items.push(item);
-                values.push(localStorageService.get(item).value);
+                let items = [];
+                let values = [];
 
-            })
+                $scope.showPicture = true;
 
-            // console.log(items);
-            // console.log(values);
+                keys.forEach(item => {
 
-            let itemsDataset = $scope.arrToDataset(items);
-            let valuesDataset = $scope.arrToDataset(values);
+                    items.push(item);
+                    values.push(localStorageService.get(item).value);
 
-            let uri = "{type: 'bar', data: { labels:" + itemsDataset + ", datasets: [{ label: 'Values', data:" + valuesDataset + "}]}} ";
-            let res = encodeURI(uri);
-            document.getElementById("demo").src = "https://quickchart.io/chart?c=" + res;
+                })
 
-        }        
+                // console.log(items);
+                // console.log(values);
 
-        $scope.searchPlayer = function (name) {           
+                let itemsDataset = $scope.arrToDataset(items);
+                let valuesDataset = $scope.arrToDataset(values);
 
-            if (name != undefined && name!="") {     
-                
+                let uri = "{type: 'bar', data: { labels:" + itemsDataset + ", datasets: [{ label: 'Value', data:" + valuesDataset + "}]}} ";
+                let res = encodeURI(uri);
+                document.getElementById("demo").src = "https://quickchart.io/chart?c=" + res;
+
+            }
+
+        }
+
+        $scope.searchPlayer = function (name) {
+
+            if (name != undefined && name != "") {
+
                 console.log(name)
-               
+
                 $location.search('searched', name);
 
                 $scope.found = false;
@@ -240,6 +276,20 @@ angular.module('homeworkProject.players', ['ngRoute'])
                     $scope.found = false;
 
                     $scope.notFoundMessage = "Nie znalazłem!";
+
+
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('.found')))
+                        .clickOutsideToClose(true)
+                        // .title('Uwaga!')
+                        .textContent('Nie znaleziono zawodnika.')
+                        .ariaLabel('Alert Dialog Demo')
+                        .openFrom('.md-raised')
+                        .closeTo('.titletext')
+                        .ok('Ok')
+                    )
+
                 }
 
                 // $location.search('searched', name);

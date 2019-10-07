@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- przestawienie na początek - wyższy priorytet -->
-  <link rel="stylesheet" href="lib/angular-material/angular-material.css"> 
+  <link rel="stylesheet" href="lib/angular-material/angular-material.css">
 
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
@@ -22,35 +22,33 @@
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
   <style>
-
-    body{
+    body {
 
       font-family: Verdana, Geneva, Tahoma, sans-serif;
+      height: 100vh;
     }
 
-    .menu li>a{
+    .menu li>a {
 
       text-decoration: none;
       color: #333333;
-      }
+    }
 
-      .menu li>a:hover{
-
-        color: #888888;
-      }
-  
   </style>
 
 
 </head>
 
 <body>
-  <ul class="menu">
-    <li><a href="#!/view1">Strona główna</a></li>
-    <li><a href="#!/view2">Losowy fakt</a></li>
-    <li><a href="#!/players">Dodaj zawodnika</a></li>
-    <li><a href="#!/list">Lista zawodników</a></li>
-  </ul>
+
+  <md-nav-bar>
+
+    <md-nav-item md-nav-href="#!/view1">Strona główna</md-nav-item>
+    <md-nav-item md-nav-href="#!/view2">Losowy fakt</md-nav-item>
+    <md-nav-item md-nav-href="#!/players">Dodaj zawodnika</md-nav-item>
+    <md-nav-item md-nav-href="#!/list">Lista zawodników</md-nav-item>
+
+  </md-nav-bar>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -58,8 +56,7 @@
 
   <!-- tu będą wstawiane widoki -->
 
-  <div ng-view layout="column" style="height: 100vh"></div>
-
+  <div ng-view layout="column"></div>
 
   <!-- <div>AngularJS seed app: v<span app-version></span></div> -->
 
@@ -77,9 +74,10 @@
   <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
 
   <script src="lib/angular-animate/angular-animate.min.js"></script>
-  <script src="lib/angular-aria/angular-aria.min.js"></script>  
+  <script src="lib/angular-aria/angular-aria.min.js"></script>
   <script src="lib/angular-material/angular-material.min.js"></script>
- 
+  <script src="lib/angular-messages/angular-messages.min.js"></script>
+
 
   <!-- <script src="./node_modules/angular-animate/angular-animate.min.js"></script>
   <script src="/zadanieDomowe/node_modules/angular-aria/angular-aria.min.js"></script>
@@ -88,9 +86,6 @@
   <script src="angular-aria.min.js"></script>
   <script src="angular-material.min.js"></script>  
   <link rel="stylesheet" href="angular-material.css"> -->
- 
-
-
 
   <!-- <script src="angular-local-storage.js"></script> -->
   <!-- <script src="core/version/version.js"></script>
