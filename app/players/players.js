@@ -102,13 +102,20 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         $scope.location = $location;
 
-       $scope.searchButtonActive = true;
+        $scope.searchButtonActive = true;
 
         $scope.loadingValue = 0;
 
+        $scope.getSurnamesToArray = function () {
+
+            //wyluskanie z bazy jedynie nazwisk, ktore beda podpowiedziami w elemencie md-autocomplete
+            $scope.surnames = localStorageService.keys();
+            console.log($scope.surnames);
+        }
+
         $scope.loadingBeforeSearch = function (searchedPlayer) {
 
-            if (searchedPlayer != ""  && searchedPlayer != undefined) {
+            if (searchedPlayer != "" && searchedPlayer != undefined) {
 
                 console.log(searchedPlayer);
 
@@ -183,6 +190,7 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $scope.importFromStorage = function () {
 
             playerDataServices.importDataFromStorage($scope.playerData);
+            $scope.getSurnamesToArray();
         }
 
         $scope.clearAll = function () {
@@ -303,6 +311,28 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
             $location.search('searched', null); //kasowanie podaniem nulla
             $scope.searchedPlayer = "";
+        }
+
+        $scope.matching = [];
+
+        //funkcja odpowiedzialna za wyswietlanie podpowiedzi w md-autocomplete - sprwdza czy podany tekst w inpucie zgadza sie z ktorymkolwiek nazwiskiem
+
+        $scope.checkMatching = function () {
+
+            console.log($scope.searchedPlayer);
+            // console.log()
+
+            if ($scope.searchedPlayer != undefined && $scope.surnames.length > 0) {
+
+                $scope.matching = $scope.surnames.filter(function (surname) {
+
+                    return surname.toLowerCase().startsWith($scope.searchedPlayer.toLowerCase());
+
+                    //jesli prawda, to wrzucam do matching
+                })
+
+                console.log($scope.matching);
+            }
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku

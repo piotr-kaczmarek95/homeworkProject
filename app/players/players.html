@@ -60,7 +60,7 @@
         margin: 10px auto;
     }
 
-    .md-button.narrow{
+    .md-button.narrow {
 
         border-radius: 10px 10px 10px 10px;
     }
@@ -73,7 +73,19 @@
 
 <p style="text-align: center;">{{text}}</p>
 
-<input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer">
+<!-- <input type="text" placeholder="Wpisz nazwisko..." ng-model="searchedPlayer"> -->
+
+<form ng-submit="$event.preventDefault" style="width: 30%; margin: 0 auto;">
+
+    <md-autocomplete md-items="item in matching" md-search-text="searchedPlayer"
+        md-search-text-change="checkMatching()" md-input-minlength="2" md-selected-item="selectedItem">
+
+        <span>{{item}}</span>
+
+    </md-autocomplete>
+
+</form>
+
 
 <md-button class="narrow" ng-click="loadingBeforeSearch(searchedPlayer)" ng-disabled="!searchButtonActive">Szukaj!
 </md-button>
