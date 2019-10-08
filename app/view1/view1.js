@@ -22,4 +22,7 @@ angular.module('homeworkProject.view1', ['ngRoute'])
         templateUrl: 'view1/bottom.html',
         controller: 'View1Ctrl'
       })}
+
+      
+
   }]);
