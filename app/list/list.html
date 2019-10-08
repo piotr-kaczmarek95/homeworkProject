@@ -50,10 +50,42 @@
         background-color: #bbbbbb;
     }
 
-    div>.md-button {
+    /* div>.md-button {
 
         width: 30%;
         margin: 0 auto;
+    } */
+
+    .groupX {
+        font-size: 16px;
+        margin: 20px 0;
+        padding: 3px 15px 3px 15px;
+        color: rgb(49, 46, 46);
+        background-color: rgba(224, 224, 224, 0.96);
+        text-transform: none;
+        font-weight: 400;
+        min-width: 100px;
+    }
+
+    .md-button.left {
+        border-radius: 10px 0 0 10px;
+    }
+
+    .md-button.middle {
+        border-radius: 0;
+        border-left: 1px solid rgba(230, 230, 230, 0.96);
+        border-right: 1px solid rgba(230, 230, 230, 0.96);
+    }
+
+    .md-button.right {
+        border-radius: 0 10px 10px 0;
+    }
+
+    .md-button:not([disabled]):hover {
+        background-color: rgba(193, 193, 193, 0.96);
+        /* color: rgba(44, 65, 164, 0.96); */
+        color: #E91E63;
+        transition: 0.3s;
     }
 </style>
 
@@ -100,12 +132,21 @@
 
     <!-- <md-button class="md-raised" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
 
-    <div class="buttons" flex layout="row" layout-align="start start">
+    <!-- <div class="buttons" flex layout="row" layout-align="start start">
 
-        <md-button ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button>
-        <!-- <md-button class="md-accent md-hue-3" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
-        <md-button ng-click="printChart()">Rysuj wykres</md-button>
+        <md-button ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
+    <!-- <md-button class="md-accent md-hue-3" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
+    <!-- <md-button ng-click="printChart()">Rysuj wykres</md-button>
         <md-button  ng-click="clearAll()">Wyczyść localStorage</md-button>
+
+    </div> -->
+
+    <div flex layout="row" layout-align="center center">
+
+        <md-button class="groupX left" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button>
+        <!-- <md-button class="md-accent md-hue-3" ng-click="showAllEntries()">Pokaż wpisy w konsoli</md-button> -->
+        <md-button class="groupX middle" ng-click="printChart()">Rysuj wykres</md-button>
+        <md-button class="groupX right" ng-click="clearAll()">Wyczyść localStorage</md-button>
 
     </div>
 

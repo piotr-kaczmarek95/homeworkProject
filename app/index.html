@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="homeworkProject" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="homeworkProject" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en" ng-app="homeworkProject" class="no-js">
+<html lang="en" ng-app="homeworkProject" class="no-js" style="height: 100%">
 <!--<![endif]-->
 
 <head>
@@ -13,21 +13,26 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- przestawienie na początek - wyższy priorytet -->
-  <link rel="stylesheet" href="lib/angular-material/angular-material.css">
-
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
+
+  <!-- pozniejsze z arkusza stylow - bedzie ważniejszy -->
+
+  <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap&subset=latin-ext" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=latin-ext" rel="stylesheet"> -->
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
   <style>
     body {
 
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      height: 100vh;
+      /* height: 100vh; */
+      min-height: 100%;
       /* height: 100%; */
       overflow: hidden;
+      /* font-family: 'Ubuntu', sans-serif; */
+      position: relative;
     }
 
     .menu li>a {
@@ -43,7 +48,7 @@
 
 <body>
 
-  <md-nav-bar>
+  <md-nav-bar aria-label="navigation">
 
     <md-nav-item md-nav-href="#!/view1">Strona główna</md-nav-item>
     <md-nav-item md-nav-href="#!/view2">Losowy fakt</md-nav-item>
