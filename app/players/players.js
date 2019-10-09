@@ -66,6 +66,32 @@ angular.module('homeworkProject.players', ['ngRoute'])
                         playerData.splice(i, 1);
                     }
                 }
+            },
+
+            sortBy: function (players, sortBy) {
+
+                console.log(sortBy);
+
+                //sortBy jest nazwa wlasnosci, po ktorej sa sortowane wpisy
+
+                let firstLine = "a."+sortBy+".toUpperCase()";
+                let secondLine = "b."+sortBy+".toUpperCase()";             
+
+                if (players.length > 0) {
+
+                    // console.log("Sortuje w factory");
+
+                    players.sort(function (a, b) {
+
+                        let textA = eval(firstLine);
+                        let textB = eval(secondLine);
+
+                        return textA.localeCompare(textB);
+
+                    })
+                }
+                // console.log(players);
+                return players;
             }
         }
     }])
@@ -197,6 +223,15 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
             playerDataServices.clearAll($scope.playerData);
 
+        }
+
+        $scope.sortByProperty = function (sortBy){
+
+            //sortowanie po właściwości surname obiektu
+
+            // console.log(atrybut);
+
+            $scope.playerData = playerDataServices.sortBy($scope.playerData, sortBy);
         }
 
         $scope.arrToDataset = function (arr) {
@@ -333,18 +368,6 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                 console.log($scope.matching);
             }
-        }
-
-        $scope.sortBySurname = function () {
-
-            $scope.playerData.sort(function (a, b) {
-
-                var textA = a.surname.toUpperCase();
-                var textB = b.surname.toUpperCase();
-
-                return textA.localeCompare(textB);
-
-            })
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
