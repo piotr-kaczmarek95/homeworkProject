@@ -335,6 +335,18 @@ angular.module('homeworkProject.players', ['ngRoute'])
             }
         }
 
+        $scope.sortBySurname = function () {
+
+            $scope.playerData.sort(function (a, b) {
+
+                var textA = a.surname.toUpperCase();
+                var textB = b.surname.toUpperCase();
+
+                return textA.localeCompare(textB);
+
+            })
+        }
+
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
 
     }]);

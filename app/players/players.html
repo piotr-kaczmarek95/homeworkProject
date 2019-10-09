@@ -77,8 +77,8 @@
 
 <form ng-submit="$event.preventDefault" style="width: 30%; margin: 0 auto;">
 
-    <md-autocomplete md-items="item in matching" md-search-text="searchedPlayer"
-        md-search-text-change="checkMatching()" md-input-minlength="2" md-selected-item="selectedItem">
+    <md-autocomplete md-items="item in matching" md-search-text="searchedPlayer" md-search-text-change="checkMatching()"
+        md-input-minlength="2" md-selected-item="selectedItem" placeholder="Wpisz nazwisko..." md-clear-button="true" s>
 
         <span>{{item}}</span>
 
@@ -97,10 +97,6 @@
 
 
 <md-button class="narrow" ng-click="removeHint()">Kasuj podpowiedź</md-button>
-
-<!-- <p ng-show="!found" style="text-align: center;">{{notFoundMessage}}</p> -->
-
-<div class="notFound" ng-show="!found"></div>
 
 <br>
 
@@ -136,8 +132,17 @@
         <span ng-show="showAgeWarning">Zbyt mała wartość!</span>
         <br> <br>
 
-        <span class="property">Wartość:</span> <br> <input type="number" ng-model="value" ng-min="0"
-            ng-required="true"><br><br>
+        <!-- <span class="property">Wartość:</span> <br> <input type="number" ng-model="value" ng-min="0"
+            ng-required="true"><br><br> -->
+
+        <md-slider-container>
+            <span>Wartość</span>
+            <md-slider min="0" max="250" ng-model="value" aria-label="value" id="value">
+            </md-slider>
+            <md-input-container>
+                <input type="number" ng-model="value" aria-label="value" aria-controls="value">
+            </md-input-container>
+        </md-slider-container>
 
         <!-- <input class="send" type="submit" value="Wyślij/Zmień" ng-disabled="playerForm.$invalid || showAgeWarning"> -->
 
