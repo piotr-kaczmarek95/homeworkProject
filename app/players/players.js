@@ -72,12 +72,12 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                 console.log(sortBy);
 
-                //sortBy jest nazwa wlasnosci, po ktorej sa sortowane wpisy
-
-                let firstLine = "a."+sortBy+".toUpperCase()";
-                let secondLine = "b."+sortBy+".toUpperCase()";             
+                //sortBy jest nazwa wlasnosci, po ktorej sa sortowane wpisy          
 
                 if (players.length > 0) {
+
+                    let firstLine = "a." + sortBy + ".toUpperCase()";
+                    let secondLine = "b." + sortBy + ".toUpperCase()";
 
                     // console.log("Sortuje w factory");
 
@@ -116,7 +116,6 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                 return tooYoung;
             }
-
         }
     })
 
@@ -131,6 +130,8 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $scope.searchButtonActive = true;
 
         $scope.loadingValue = 0;
+
+        $scope.showPicture = false;
 
         $scope.getSurnamesToArray = function () {
 
@@ -165,9 +166,7 @@ angular.module('homeworkProject.players', ['ngRoute'])
         }
 
         console.log($scope.location);
-        // console.log($scope.location.search());
-
-        $scope.showPicture = false;
+        // console.log($scope.location.search());       
 
         if ($scope.location.search() != "") {
 
@@ -222,14 +221,11 @@ angular.module('homeworkProject.players', ['ngRoute'])
         $scope.clearAll = function () {
 
             playerDataServices.clearAll($scope.playerData);
-
         }
 
-        $scope.sortByProperty = function (sortBy){
+        $scope.sortByProperty = function (sortBy) {
 
-            //sortowanie po właściwości surname obiektu
-
-            // console.log(atrybut);
+            //sortBy jest nazwą własności obiektu
 
             $scope.playerData = playerDataServices.sortBy($scope.playerData, sortBy);
         }
@@ -347,8 +343,6 @@ angular.module('homeworkProject.players', ['ngRoute'])
             $location.search('searched', null); //kasowanie podaniem nulla
             $scope.searchedPlayer = "";
         }
-
-        $scope.matching = [];
 
         //funkcja odpowiedzialna za wyswietlanie podpowiedzi w md-autocomplete - sprwdza czy podany tekst w inpucie zgadza sie z ktorymkolwiek nazwiskiem
 

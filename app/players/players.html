@@ -78,7 +78,7 @@
 <form ng-submit="$event.preventDefault" style="width: 30%; margin: 0 auto;">
 
     <md-autocomplete md-items="item in matching" md-search-text="searchedPlayer" md-search-text-change="checkMatching()"
-        md-input-minlength="2" md-selected-item="selectedItem" placeholder="Wpisz nazwisko..." md-clear-button="true" s>
+        md-input-minlength="2" md-selected-item="selectedItem" placeholder="Wpisz nazwisko..." md-clear-button="true">
 
         <span>{{item}}</span>
 
@@ -137,7 +137,7 @@
 
         <md-slider-container>
             <span>Wartość</span>
-            <md-slider min="0" max="250" ng-model="value" aria-label="value" id="value">
+            <md-slider min="0" max="250" ng-model="value" aria-label="value" id="value" ng-required="true">
             </md-slider>
             <md-input-container>
                 <input type="number" ng-model="value" aria-label="value" aria-controls="value">
@@ -146,7 +146,7 @@
 
         <!-- <input class="send" type="submit" value="Wyślij/Zmień" ng-disabled="playerForm.$invalid || showAgeWarning"> -->
 
-        <md-button class="md-raised" type="submit" ng-disabled="playerForm.$invalid || showAgeWarning">Wyślij/zmień
+        <md-button class="md-raised" type="submit" ng-disabled="playerForm.$invalid || showAgeWarning" style="margin-bottom: 25px;">Wyślij/zmień
         </md-button>
     </form>
 
