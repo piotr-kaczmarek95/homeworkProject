@@ -14,6 +14,21 @@ angular.module('homeworkProject.view1', ['ngRoute'])
     $scope.showText = function () {
 
       console.log($scope.myDate);
+
+      let todayDate= new Date();
+      console.log(todayDate);
+
+
+      let birthDate = $scope.myDate;
+
+      let diff = todayDate.getTime() - birthDate.getTime();
+
+      let diffYears = Math.floor((diff / (365*1000*3600*24)));
+      
+
+      console.log(diffYears);
+
+
     }
 
     $scope.showListBottomSheet = function () {
@@ -29,6 +44,8 @@ angular.module('homeworkProject.view1', ['ngRoute'])
       menu.open();
 
     }
+
+
 
 
 

@@ -40,14 +40,6 @@
         cursor: pointer;
     }
 
-
-    .playerForm .md-button {
-
-        /* width: 20%; */
-        width: 60%;
-        margin: 0 auto;
-    }
-
     div.playerForm {
 
         margin: 0 auto;
@@ -64,6 +56,17 @@
 
         border-radius: 10px 10px 10px 10px;
     }
+
+    .md-datepicker-calendar-icon{
+
+        margin: 0px;
+    }
+
+    /* button.md-datepicker-button{
+
+        
+       
+    } */
 </style>
 
 <md-toolbar>
@@ -124,12 +127,13 @@
             pole</span>
         <span ng-show="playerForm.playerSurname.$error.minlength">Za krótki wpis!</span>
 
-        <br> <br>
-        <span class="property">Wiek:</span> <br> <input type="number" ng-model="age" ng-change="checkAge(age)"
-            ng-required="true">
-        <br>
+        <br> <br>  
 
-        <span ng-show="showAgeWarning">Zbyt mała wartość!</span>
+        <span> Data urodzenia:</span>
+        <md-datepicker ng-model="myDate" md-placeholder="Podaj datę" md-current-view="year" ng-change="calcAge()" ng-required="true">
+        </md-datepicker>
+
+        <span ng-show="showAgeWarning"> <br>  Zbyt mała wartość!</span>
         <br> <br>
 
         <!-- <span class="property">Wartość:</span> <br> <input type="number" ng-model="value" ng-min="0"
@@ -146,7 +150,8 @@
 
         <!-- <input class="send" type="submit" value="Wyślij/Zmień" ng-disabled="playerForm.$invalid || showAgeWarning"> -->
 
-        <md-button class="md-raised" type="submit" ng-disabled="playerForm.$invalid || showAgeWarning" style="margin-bottom: 25px;">Wyślij/zmień
+        <md-button class="md-raised" type="submit" ng-disabled="playerForm.$invalid || showAgeWarning"
+            style="margin-bottom: 25px; width: 60%;">Wyślij/zmień
         </md-button>
     </form>
 

@@ -175,7 +175,8 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
         $scope.checkAge = function (age) {
 
-            $scope.showAgeWarning = checkAgeService.checkAge(age);
+            //gdy zbyt mlody zwroci true
+            return $scope.showAgeWarning = checkAgeService.checkAge(age);
         }
 
         $scope.text = "Dodaj lub edytuj zawodnika. Wielkość liter w wyszukiwarce nie ma znaczenia.";
@@ -362,6 +363,30 @@ angular.module('homeworkProject.players', ['ngRoute'])
 
                 console.log($scope.matching);
             }
+        }
+
+        $scope.calcAge = function () {
+
+            console.log($scope.myDate);
+
+            let todayDate = new Date();
+            console.log(todayDate);
+
+            let birthDate = $scope.myDate;
+
+            let diff = todayDate.getTime() - birthDate.getTime();
+
+            let diffYears = Math.floor((diff / (365 * 1000 * 3600 * 24)));
+
+            console.log(diffYears);
+
+            //jesli funkcja sprawdzajaca, czy zawodnik jest zbyt mlody - jesli zwroci false, to wiek ok
+
+            if (!$scope.checkAge(diffYears)){
+
+                $scope.age = diffYears;
+            }
+
         }
 
         $scope.importFromStorage(); //wywołanie, by zawartość wyświetliła się przy przeładowaniu widoku
